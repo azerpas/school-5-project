@@ -1,6 +1,6 @@
 function Fruits = getfruits()
     imds = imageDatastore('fruits-360\Training', 'IncludeSubfolders',true, 'LabelSource','foldernames');
-    [imdsTrain, poubelle] = splitEachLabel(imds,0.005,"randomized");
+    [imdsTrain, ~] = splitEachLabel(imds,0.005,"randomized");
 
     net = alexnet;
     inputSize = net.Layers(1).InputSize;
@@ -40,6 +40,6 @@ function Fruits = getfruits()
 
     netTransfer = trainNetwork(augimdsTrain,layers,options2);
 
-    reseau1 = net;
+    reseau1 = netTransfert;
     save reseau1;
 end
