@@ -1,4 +1,4 @@
-function Fruits = Test(pathToTest,net) 
+function Accuracy = Test(pathToTest,net) 
     idsTest = imageDatastore(pathToTest, 'IncludeSubfolders', true, 'LabelSource', "foldernames");
 
     pixelRange = [-30 30];
@@ -8,7 +8,7 @@ function Fruits = Test(pathToTest,net)
         'RandYTranslation',pixelRange);
     augimdsTrain = augmentedImageDatastore([227,227],imdsTrain, ...
         'DataAugmentation',imageAugmenter);
-        
+
     result = classify(net,augimdsTrain);
     
     accuracy = sum(result == idsTest.Labels) / numel(idsTest.Labels);
