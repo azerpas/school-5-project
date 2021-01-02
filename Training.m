@@ -35,7 +35,7 @@ function TrainedNet = Training(pathToTrain)
         'Verbose',false, ...
         'ExecutionEnvironment','gpu', % À ENLEVER, si sur CPU
         'Plots','training-progress');
-    [net,info] = trainNetwork(auds, layers, options);
+    [net,info] = trainNetwork(augimdsTrain, layers, options);
     disp(info);
     plot(info.TrainingLoss);
     save('./net.mat','net');

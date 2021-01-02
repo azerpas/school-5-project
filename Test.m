@@ -1,12 +1,19 @@
 function Fruits = Test(pathToTest,net) 
-    imds = imageDatastore(pathToTest, 'IncludeSubfolders', true, 'LabelSource', "foldernames");
-    auds = augmentedImageDatastore([227,227], imds); % Resize to 227 227
-    preds = classify(net,auds);
-    disp(preds);
+    idsTest = imageDatastore(pathToTest, 'IncludeSubfolders', true, 'LabelSource', "foldernames");
+
+    pixelRange = [-30 30];
+    imageAugmenter = imageDataAugmenter( ...
+        'RandXReflection',true, ...
+        'RandXTranslation',pixelRange, ...
+        'RandYTranslation',pixelRange);
+    augimdsTrain = augmentedImageDatastore([227,227],imdsTrain, ...
+        'DataAugmentation',imageAugmenter);
+        
+    result = classify(net,augimdsTrain);
     
-    numCorrect = nnz(imds.Labels == preds);
-    fracCorrect = numCorrect/numel(preds);
-    disp(fracCorrect); % Number of valid results
-    confusionchart(imds.Labels, preds);
+    accuracy = sum(result == idsTest.Labels) / numel(idsTest.Labels);
+    disp(accuracy);
+
+    confusionchart(idsTest.Labels, result);
 
 end
