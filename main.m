@@ -41,7 +41,7 @@ function Main = main()
             net = Training(pathToTrain);
         end
         disp("Please enter url to ipwebcam.");
-        pathToTrain = input("(ex: http://192.168.0.34:8080/video): ");
+        urlToCamera = input("(ex: http://192.168.0.34:8080/video): ");
         camScript(urlToCamera);
     else
         disp("Please enter a correct value.");
