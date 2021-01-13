@@ -1,6 +1,7 @@
 import PackageName.Training.*
 import PackageName.Test.*
 import PackageName.getfruit.*
+import PackageName.camscript.*
 
 pathToTrain = "fruits360/Training";
 pathToTest = "fruits360/Test";
@@ -10,6 +11,7 @@ function Main = main()
     disp("1. Train the network (Long process)");
     disp("2. Test the network");
     disp("3. Identify a fruit");
+    disp("4. Use camera to identify a fruit");
     x = input("Give a number: ");
     if x == 1
         Training(pathToTrain);
@@ -32,6 +34,15 @@ function Main = main()
         end
         fruit = getFruit(pathToFruit,net);
         disp("The fruit is probably a: "+fruit);
+    else if x == 4
+        net = load('net.mat');
+        if isempty(net)
+            disp("We can't find a 'net.mat' file... We will train the network first.");
+            net = Training(pathToTrain);
+        end
+        disp("Please enter url to ipwebcam.");
+        pathToTrain = input("(ex: http://192.168.0.34:8080/video): ");
+        camScript(urlToCamera);
     else
         disp("Please enter a correct value.");
         main();

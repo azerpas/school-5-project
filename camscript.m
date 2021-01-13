@@ -1,7 +1,8 @@
 import PackageName.Training.*
 import PackageName.Test.*
+import PackageName.getfruit.*
 
-function camera = camScript(urlToCam)
+function Fruit = camScript(urlToCam)
     cam = ipcam(urlToCam); % 'http://192.168.0.34:8080/video'
     disp("Importing network...");
     net = load('net.mat');
@@ -20,8 +21,9 @@ function camera = camScript(urlToCam)
             image = snapshot(cam);
             imshow(image); 
             t = datetime("now","TimeZone",'Europe/Paris');
-            saveas(imshow(image), 'smartphonePicture/imageTaken'+datestr(t, 'ddmmmyyyyHHMMSS')+'.png')
-            Test(pathToTest,net);
+            imagePath = 'smartphonePicture/imageTaken'+datestr(t, 'ddmmmyyyyHHMMSS')+'.png';
+            saveas(imshow(image), imagePath);
+            Fruit = getFruit(imagePath,net);
         end
         disp("Please choose an option:");
         disp("1. Classify the image");
