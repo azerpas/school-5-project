@@ -1,0 +1,8 @@
+Pour faire fonctionner le camScript il faut :
+	-Un réseeau de neurones appelé 'fruitnet.mat' à la racine.
+	-Un dossier 'smartphonePicture' à la racine.
+	-Télécharger l'application : 'ipwebcam'
+	-Lancer l'application et cliquez sur 'start server'
+	-Rendez vous dans votre navigateur sur le lien afficher sur l'application.
+	-Ouvrez le fichier 'camScript' dans matlab et modifier les derniers chiffres de l'adresse ip de la ligne 4 pour qu'il correspond à votre lien sur ipwebcam.
+	-Vous pouvez lancer le script 
