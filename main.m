@@ -6,7 +6,9 @@ import PackageName.camscript.*
 pathToTrain = "fruits360/Training";
 pathToTest = "fruits360/Test";
 
-function Main = main()
+mainF();
+
+function Main = mainF()
     disp("Hello ! Please choose an option:");
     disp("1. Train the network (Long process)");
     disp("2. Test the network");
@@ -15,16 +17,16 @@ function Main = main()
     x = input("Give a number: ");
     if x == 1
         Training(pathToTrain);
-        main();
-    else if x == 2
+        mainF();
+    elseif x == 2
         net = load('net.mat');
         if isempty(net)
             disp("We can't find a 'net.mat' file... We will train the network first.");
             net = Training(pathToTrain);
         end
         Test(pathToTest, net);
-        main();
-    else if x == 3
+        mainF();
+    elseif x == 3
         disp("Please enter the relative path to fruit.");
         pathToFruit = input("(ex: ./myfruit.jpg): ");
         net = load('net.mat');
@@ -34,7 +36,7 @@ function Main = main()
         end
         fruit = getFruit(pathToFruit,net);
         disp("The fruit is probably a: "+fruit);
-    else if x == 4
+    elseif x == 4
         net = load('net.mat');
         if isempty(net)
             disp("We can't find a 'net.mat' file... We will train the network first.");
@@ -45,6 +47,6 @@ function Main = main()
         camScript(urlToCamera);
     else
         disp("Please enter a correct value.");
-        main();
+        mainF();
     end
 end
