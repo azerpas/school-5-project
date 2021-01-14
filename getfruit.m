@@ -1,45 +1,40 @@
-function Fruits = getfruits()
-    imds = imageDatastore('fruits-360\Training', 'IncludeSubfolders',true, 'LabelSource','foldernames');
-    [imdsTrain, poubelle] = splitEachLabel(imds,0.005,"randomized");
+function Fruit = getFruit(pathToFruit,net)
+    readim = imread(pathToFruit);
+    resizedIm = imresize(readim, [227, 227]);
+    if isa(net, 'struct') == 1
+        [result,score] = classify(net.net, resizedIm);
+    else
+        [result,score] = classify(net, resizedIm);
+    end
+    %{ 
+        GET SCORES
+    %}
+    [~,idx] = sort(score,'descend');
+    idx = idx(5:-1:1); % Get first 5 scores
+    if isa(net, 'struct') == 1
+        classes = net.net.Layers(end).Classes;
+    else
+        classes = net.Layers(end).Classes;
+    end
+     
+    classNamesTop = string(classes(idx));
+    scoreTop = score(idx);
 
-    net = alexnet;
-    inputSize = net.Layers(1).InputSize;
-    layersTransfer = net.Layers(1:end-3);
-    numClasses = numel(categories(imdsTrain.Labels));
-    layers = [
-        layersTransfer
-        fullyConnectedLayer(numClasses,'WeightLearnRateFactor',20,'BiasLearnRateFactor',20)
-        softmaxLayer
-        classificationLayer];
+    %{
+        DISPLAY SCORES
+    %}
+    h = figure;
+    h.Position(3) = 2*h.Position(3);
+    ax1 = subplot(1,2,1);
+    ax2 = subplot(1,2,2);
+    image(ax1, readim);
+    title(ax1, {char(result),num2str(max(score),2)});
+    barh(ax2, scoreTop)
+    xlim(ax2, [0 1])
+    title(ax2, 'Top 5')
+    xlabel(ax2, 'Probability')
+    yticklabels(ax2, classNamesTop)
+    ax2.YAxisLocation = 'right';
 
-    pixelRange = [-30 30];
-    imageAugmenter = imageDataAugmenter( ...
-        'RandXReflection',true, ...
-        'RandXTranslation',pixelRange, ...
-        'RandYTranslation',pixelRange);
-    augimdsTrain = augmentedImageDatastore(inputSize(1:2),imdsTrain, ...
-        'DataAugmentation',imageAugmenter);
-
-    options1 = trainingOptions('sgdm', ...
-        'MiniBatchSize',10, ...
-        'MaxEpochs',6, ...
-        'InitialLearnRate',5e-4, ...
-        'Shuffle','every-epoch', ...
-        'ValidationFrequency',3, ...
-        'Verbose',false, ...
-        'Plots','training-progress');
-
-    options2 = trainingOptions('sgdm', ...
-        'LearnRateSchedule','piecewise', ...
-        'LearnRateDropFactor',0.2, ...
-        'LearnRateDropPeriod',5, ...
-        'MaxEpochs',20, ...
-        'MiniBatchSize',64, ...
-        'Verbose',false, ...
-        'Plots','training-progress')
-
-    netTransfer = trainNetwork(augimdsTrain,layers,options2);
-
-    reseau1 = net;
-    save reseau1;
+    Fruit = char(result);
 end

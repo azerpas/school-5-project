@@ -1,7 +1,7 @@
-function Path = camScript(urlToCam)
+function Fruit = camScript(urlToCam)
     cam = ipcam(urlToCam); % 'http://192.168.0.34:8080/video'
     disp("Importing network...");
-    load('fruitnet.mat');
+    load('net.mat');
     disp("Network retrieved, accessing the camera...");
     preview(cam);
     val = input("Press '1' whenever you're ready to classify the fruit: \n");
@@ -16,10 +16,11 @@ function Path = camScript(urlToCam)
             disp('Classifying the picture...')
             image = snapshot(cam);
             imshow(image); 
+            t = datetime("now","TimeZone",'Europe/Paris');
             imagePath = 'smartphonePicture/imageTaken.png';
             saveas(imshow(image), imagePath);
             %Path = imagePath;
-            getfruit(imagePath,fruitnet);
+            Fruit = getfruit(imagePath,net);
         end
         disp("Please choose an option:");
         disp("1. Classify the image by retaking a picture");

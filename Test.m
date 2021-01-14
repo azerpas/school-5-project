@@ -5,9 +5,9 @@ function Fruits = Test(pathToTest,net)
     preds = classify(net,auds); 
     disp(preds);
     
-    numCorrect = nnz(imds.Labels == preds);
-    fracCorrect = numCorrect/numel(preds);
-    disp(fracCorrect); % Number of valid results
-    confusionchart(imds.Labels, preds);
+    accuracy = sum(result == idsTest.Labels) / numel(idsTest.Labels);
+    disp(accuracy);
+
+    confusionchart(idsTest.Labels, result);
 
 end
