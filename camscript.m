@@ -22,5 +22,9 @@ function Path = camScript(urlToCam)
             %Path = imagePath;
             Fruit = getfruit(imagePath,net);
         end
+        disp("Please choose an option:");
+        disp("1. Classify the image by retaking a picture");
+        disp("0. Quit the camera tool");
+        val = input("Write a number: \n");
     end
 end
