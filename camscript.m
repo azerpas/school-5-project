@@ -1,8 +1,4 @@
-import PackageName.Training.*
-import PackageName.Test.*
-import PackageName.getfruit.*
-
-function Fruit = camScript(urlToCam)
+function Path = camScript(urlToCam)
     cam = ipcam(urlToCam); % 'http://192.168.0.34:8080/video'
     disp("Importing network...");
     net = load('net.mat');
@@ -21,13 +17,10 @@ function Fruit = camScript(urlToCam)
             image = snapshot(cam);
             imshow(image); 
             t = datetime("now","TimeZone",'Europe/Paris');
-            imagePath = 'smartphonePicture/imageTaken'+datestr(t, 'ddmmmyyyyHHMMSS')+'.png';
+            imagePath = 'smartphonePicture/imageTaken.png';
             saveas(imshow(image), imagePath);
-            Fruit = getFruit(imagePath,net);
+            %Path = imagePath;
+            Fruit = getfruit(imagePath,net);
         end
-        disp("Please choose an option:");
-        disp("1. Classify the image");
-        disp("0. Quit the application");
-        val = input("Write a number: \n");
     end
 end
