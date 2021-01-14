@@ -29,7 +29,7 @@ Pour reconnaître un fruit à partir de la caméra:
 - Téléchargez l'application : 'ipwebcam'.     
 **OU**
 - (iOS) Téléchargez l'application : [IP Webcam Home Security Camera](https://apps.apple.com/fr/app/ip-webcam-home-security-camera/id1264454867) *par Waleed Arif Malik*      
-Retenez que l'URL de la vidéo se situe en bas de l'application et que le port n'est pas 8888 mais 8080, à la fin de l'adresse http, ajoutez `/video`. Si vous ne parvenez pas à trouver le lien précis, rendez-vous sur Firefox à l'URL en bas de votre application et faites un clic droit "Informations sur l'image" pour trouver la vraie adresse. [Si vous n'y arrivez toujours pas regardez ce lien.](https://fr.mathworks.com/help/supportpkg/ipcamera/ug/connect-to-ip-cameras.html#butdj6y)
+Retenez que l'URL de la vidéo se situe en bas de l'application et que le port n'est pas 8888 mais 8080. À la fin de l'adresse http, ajoutez `/video`. Si vous ne parvenez pas à trouver le lien précis, rendez-vous sur Firefox à l'URL en bas de votre application et faites un clic droit "Informations sur l'image" pour trouver la vraie adresse. [Si vous n'y arrivez toujours pas regardez ce lien.](https://fr.mathworks.com/help/supportpkg/ipcamera/ug/connect-to-ip-cameras.html#butdj6y)
 ![screenshot](https://user-images.githubusercontent.com/19282069/104584563-13456c80-5663-11eb-8559-68bcbcf4ef30.PNG)
 
 - Lancez l'application et cliquez sur 'start server'
