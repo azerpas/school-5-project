@@ -1,7 +1,7 @@
-function Path = camScript(urlToCam)
+function Fruit = camScript(urlToCam)
     cam = ipcam(urlToCam); % 'http://192.168.0.34:8080/video'
     disp("Importing network...");
-    net = load('net.mat');
+    load('net.mat');
     disp("Network retrieved, accessing the camera...");
     preview(cam);
     val = input("Press '1' whenever you're ready to classify the fruit: \n");
