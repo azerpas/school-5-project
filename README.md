@@ -21,6 +21,7 @@
 - Appelez `main` depuis l'invite de commande **ou** faites *"Run"* depuis le bouton vert une fois `main.m` selectionné
 - Naviguez dans le menu et utilisez la fonctionnalité de votre choix 
 - Pour utiliser la caméra [référez-vous à la documentation](#notice-caméra)
+- *(Opt)* Téléchargez et déplacez un [réseau de neurones que nous avons initialisé](https://drive.google.com/file/d/1QwbpfC_a34mBnPC8PTp2an91BfittlSQ/view?usp=sharing) dans le dossier principal et renommez-le `net.mat`.
 
 ## Notice Caméra
 

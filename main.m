@@ -8,6 +8,7 @@ mainF();
 function Main = mainF()
     pathToTrain = "fruits360/Training";
     pathToTest = "fruits360/Test";
+    c = newline;
     disp("Hello ! Please choose an option:");
     disp("1. Train the network (Long process)");
     disp("2. Test the network");
@@ -41,9 +42,10 @@ function Main = mainF()
             disp("We can't find a 'net.mat' file... We will train the network first.");
             net = Training(pathToTrain);
         end
-        disp("");
+        disp(c);
         disp("Please enter url to ipwebcam with """" in between  ");
         urlToCamera = input("(ex: ""http://192.168.0.34:8080/video""): ");
+        disp(c);
         path = camscript(urlToCamera);
     else
         disp("Please enter a correct value.");
